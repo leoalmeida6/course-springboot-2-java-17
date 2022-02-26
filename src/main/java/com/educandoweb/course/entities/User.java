@@ -3,29 +3,37 @@ package com.educandoweb.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String email;
 	private String phone;
+	private String email;
 	private String password;
 	
-	//CONSTRUCTORS
-	public User () {
+	//CONSTRUTOR
+	public User() {
 		
 	}
 
-	public User(Long id, String name, String email, String phone, String password) {
+	public User(Long id, String name, String phone, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.email = email;
 		this.phone = phone;
+		this.email = email;
 		this.password = password;
 	}
-
+	
 	//GETTERS and SETTERS
 	public Long getId() {
 		return id;
@@ -43,20 +51,20 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPhone() {
 		return phone;
 	}
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -67,11 +75,13 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	//HASHCODE
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
+	//EQUALS
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,4 +93,5 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
 }
